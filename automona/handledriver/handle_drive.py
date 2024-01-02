@@ -1,5 +1,4 @@
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
@@ -34,7 +33,7 @@ class HandleDriver:
     def __open_website(self):
         """Open website with url."""
         self.driver.get(self.url)
-    
+
     def click(self, xpath):
         """Click on selenium webdriver element."""
         element = self.__wait_to_load_element(xpath)
@@ -48,7 +47,7 @@ class HandleDriver:
     def get_url(self, value):
         """Set a new url."""
         self.url = value
-        
+
     def close(self):
         """Close selenium webdriver."""
         self.driver.quit()
