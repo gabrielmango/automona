@@ -9,7 +9,17 @@ driver = webdriver.Chrome(
     service=ChromeService(ChromeDriverManager().install())
 )
 
+
 URL = 'https://gerais.defensoria.mg.def.br/sistemas/scsdp/'
+
+
+def wait_to_load_element(xpath_value, timeout=0.5):
+    """Wait for an element to be present in the DOM."""
+    while True:
+        sleep(timeout)
+        if driver.find_element(By.XPATH, xpath_value):
+            return driver.find_element(By.XPATH, xpath_value)
+
 
 driver.get(URL)
 
@@ -17,6 +27,7 @@ driver.get(URL)
 driver.find_element(
     By.XPATH, '//*[@id="dpmg-container-login"]/div/div[1]/div/div[2]'
 ).click()
+
 
 sleep(2)
 driver.close()
