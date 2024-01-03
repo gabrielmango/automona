@@ -1,4 +1,5 @@
 from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
@@ -6,12 +7,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class HandleDriver:
-    def __init__(self, url: str, background: bool = False):
-        self.url = url
+    def __init__(self, background: bool = False):
         self.background = background
         self.driver = None
-        self.__create_drive()
-        self.__open_website()
 
     def __create_drive(self):
         """Create a instance of selenium webdrive."""
@@ -27,12 +25,18 @@ class HandleDriver:
         """Wait for an element to be present in the DOM."""
         while True:
             sleep(timeout)
-            if driver.find_element(By.XPATH, xpath_value):
-                return driver.find_element(By.XPATH, xpath_value)
+            if self.driver.find_element(By.XPATH, xpath_value):
+                return self.driver.find_element(By.XPATH, xpath_value)
 
     def __open_website(self):
         """Open website with url."""
         self.driver.get(self.url)
+        sleep(1)
+
+    def start(self, url):
+        self.get_url(url)
+        self.__create_drive()
+        self.__open_website()
 
     def click(self, xpath):
         """Click on selenium webdriver element."""
