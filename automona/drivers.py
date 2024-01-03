@@ -21,7 +21,7 @@ class HandleDriver:
         else:
             self.driver = webdriver.Chrome(service=service)
 
-    def __wait_to_load_element(self, xpath_value, timeout=0.5):
+    def __wait_to_load_element(self, xpath_value, timeout=1):
         """Wait for an element to be present in the DOM."""
         while True:
             sleep(timeout)
@@ -40,13 +40,11 @@ class HandleDriver:
 
     def click(self, xpath):
         """Click on selenium webdriver element."""
-        element = self.__wait_to_load_element(xpath)
-        element.click()
+        self.__wait_to_load_element(xpath).click()
 
     def send_keys(self, xpath, keys):
         """Send keys to selenium webdriver element."""
-        element = self.__wait_to_load_element(xpath)
-        element.send_keys(keys)
+        self.__wait_to_load_element(xpath).send_keys(keys)
 
     def get_url(self, value):
         """Set a new url."""
